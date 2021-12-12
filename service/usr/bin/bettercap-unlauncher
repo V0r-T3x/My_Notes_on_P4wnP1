@@ -1,0 +1,20 @@
+#!/bin/bash
+
+
+
+echo "stop wlan0mon"
+airmon-ng stop wlan0mon
+echo "starting avahi-daemon"
+service avahi-daemon start
+echo "starting wpa_supplicant"
+service wpa_supplicant start
+echo "starting dhcpcd"
+service dhcpcd start
+
+#restarting the driver
+echo "restarting the driver"
+modprobe -r brcmfmac && modprobe brcmfmac
+
+dpkg -i /root/tools/libpcap/libpcap0.8_1.10.0-2_armel.deb
+
+P4wnP1_cli template deploy -w AP-C_LAN_Archie

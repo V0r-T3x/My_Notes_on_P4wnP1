@@ -1,0 +1,15 @@
+[Unit]
+Description=reverse ssh for reverse ssh tunnel
+Documentation=
+Wants=network.target
+
+[Service]
+Type=simple
+#PermissionsStartOnly=true
+ExecStart=/usr/bin/ssh -vvv -g -N -T -o "ServerAliveInterval 10" -o "ExitOnForwardFailure yes" -R 42022:localhost:22 root@yoursite.com -p 512
+#ExecStop=
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
