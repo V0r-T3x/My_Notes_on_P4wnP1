@@ -1,4 +1,4 @@
-# My_Notes_on_P4wnP1
+# My_Notes_on_P4wnP1 WIP
 My personnal notes on the P4wnP1
 
 # flash a microSDHC class 10 minimum (32go or 64go) I use 16go for tests
