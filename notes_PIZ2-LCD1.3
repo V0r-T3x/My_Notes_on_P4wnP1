@@ -1,0 +1,89 @@
+#kali rpi02w img 2021 Pi-Tail
+# https://kali.download/arm-images/kali-2021.4/kali-linux-2021.4-rpi-zero-2-w-pitail-armhf.img.xz
+
+#change /boot/wpa_supplicant.conf
+#add ssh file to /boot/
+#connect a keyboard in OTG and a HDMI cable 
+#at start the wlan0 have only inet6 allocated
+#start dhclient on boot
+nano /etc/rc.local
+#add before exit 0: 
+dhclient
+exit 0
+#Set up req. for connecting internet
+#adding nameserver 8.8.8.8 to the /etc/resolv.conf (if it's not the case)
+dpkg-reconfigure tzdata
+date --set ****-**-**
+date --set **:**:**
+reboot
+#connect ssh
+apt-get update
+apt-get upgrade
+
+# https://www.waveshare.com/wiki/1.3inch_LCD_HAT
+#Enable SPI interface
+sudo kalipi-config
+#Choose Interfacing Options -> SPI -> Yes  to enable SPI interface
+
+
+# https://wavesharejfs.blogspot.com/2018/03/raspberry-pi-driv-144inch-lcd-hat-with.html
+#Framebuffer
+sudo nano /etc/modules
+spi-bcm2835
+fbtft_device
+#Creating a new file for fbtft configuration
+sudo nano /etc/modprobe.d/fbtft.conf
+# /etc/modprobe.d/fbtft.conf
+   options fbtft_device name=adafruit18_green 
+   gpios=reset:27,dc:25,cs:8,led:24 speed=40000000 bgr=1 fps=60 custom=1 height=240 width=240 rotate=180
+
+
+# https://www.waveshare.com/wiki/Template:1.3inch_LCD_HAT_User_Manual
+#Install librairies
+#BCM2836
+wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.68.tar.gz
+tar zxvf bcm2835-1.68.tar.gz 
+cd bcm2835-1.68/
+sudo ./configure && sudo make && sudo make check && sudo make install
+#Python3
+apt update
+apt-get install ttf-wqy-zenhei
+apt-get install python3-pip 
+pip3 install RPi.GPIO
+
+#testing lcd with exemple:
+sudo apt-get install p7zip-full -y
+wget https://www.waveshare.com/w/upload/b/bd/1.3inch_LCD_HAT_code.7z
+7z x 1.3inch_LCD_HAT_code.7z -r -o./1.3inch_LCD_HAT_code
+sudo chmod 777 -R 1.3inch_LCD_HAT_code
+cd 1.3inch_LCD_HAT_code
+*adding () to all print from the scriptcd python
+sudo python main.py
+sudo python key_demo.py
+
+#FBCP driver
+sudo apt-get install cmake -y
+cd ~
+wget https://www.waveshare.com/w/upload/f/f9/Waveshare_fbcp.7z
+sudo apt-get install p7zip-full
+7z x Waveshare_fbcp.7z -o./waveshare_fbcp
+cd waveshare_fbcp
+mkdir build
+cd build
+cmake -DSPI_BUS_CLOCK_DIVISOR=20 -DWAVESHARE_1INCH3_LCD_HAT=ON -DBACKLIGHT_CONTROL=ON -DSTATISTICS=0 ..
+make -j
+sudo ./fbcp
+
+#Auto-start when Power on
+sudo cp ~/waveshare_fbcp/build/fbcp /usr/local/bin/fbcp
+sudo nano /etc/rc.local
+And then add fbcp& before exit 0
+
+#Set the display resolution
+sudo nano /boot/config.txt
+Then add the following lines at the end of the config.txt.
+hdmi_force_hotplug=1
+hdmi_cvt=300 300 60 1 0 0 0
+hdmi_group=2
+hdmi_mode=87
+display_rotate=0
