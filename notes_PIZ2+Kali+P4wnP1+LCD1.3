@@ -1,0 +1,77 @@
+#always with sudo su
+
+#kali non pi-tail img rpi02w
+#add ssh file to boot
+#connect to the pi with OTG keyboard/mouse and hdmi
+dpkg-reconfigure tzdata
+date --set ****-**-**
+date --set **:**:**
+kalipi-config
+#02 Network options > N2 Wi-fi > ...
+#connect to ssh
+git clone https://github.com/lgeekj/P4wnP1
+cd P4wnP1
+make dep
+make installkali
+kalipi-config
+#05 Interfacing Options > P3 SPI > Would you like the SPI interface to be enabled? > Yes
+#Framebuffer
+nano /etc/modules
+spi-bcm2835
+fbtft_device
+#Creating a new file for fbtft configuration
+nano /etc/modprobe.d/fbtft.conf
+# /etc/modprobe.d/fbtft.conf
+   options fbtft_device name=adafruit18_green 
+   gpios=reset:27,dc:25,cs:8,led:24 speed=40000000 bgr=1 fps=60 custom=1 height=240 width=240 rotate=180
+#Install librairies
+#BCM2836
+wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.68.tar.gz
+tar zxvf bcm2835-1.68.tar.gz
+cd bcm2835-1.68/
+./configure && sudo make && sudo make check && sudo make install
+apt-get install ttf-wqy-zenhei
+apt-get install python3-pip
+pip3 install RPi.GPIO
+apt-get install cmake -y
+cd ~
+wget https://www.waveshare.com/w/upload/f/f9/Waveshare_fbcp.7z
+apt-get install p7zip-full
+7z x Waveshare_fbcp.7z -o./waveshare_fbcp
+cd waveshare_fbcp
+mkdir build
+cd build
+cmake -DSPI_BUS_CLOCK_DIVISOR=20 -DWAVESHARE_1INCH3_LCD_HAT=ON -DBACKLIGHT_CONTROL=ON -DSTATISTICS=0 ..
+make -j
+./fbcp
+#Auto-start when Power on
+cp ~/waveshare_fbcp/build/fbcp /usr/local/bin/fbcp
+#create new file
+nano /etc/rc.local
+#write it inside:
+'''
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+fbcp&
+exit 0
+'''
+chmod +x /etc/rc.local
+#Set the display resolution
+nano /boot/config.txt
+#Then add the following lines at the end of the config.txt.
+hdmi_force_hotplug=1
+hdmi_cvt=300 300 60 1 0 0 0
+hdmi_group=2
+hdmi_mode=87
+display_rotate=0
