@@ -1,0 +1,431 @@
+Theres the log I got for the 'make dep / make compile / make installkali'. (2022-01-09)
+
+┌──(root💀kali-rpi-zero-2-w)-[~/P4wnP1]
+└─# make dep
+#Disable GUI Login
+sudo systemctl set-default multi-user.target
+Created symlink /etc/systemd/system/default.target → /lib/systemd/system/multi-user.target.
+##Disabling ipv6 for me makes repos work faster
+echo -e "net.ipv6.conf.all.disable_ipv6 = 1\nnet.ipv6.conf.default.disable_ipv6 = 1" | sudo tee -a /etc/sysctl.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+sudo sysctl -p
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+sudo apt-get update
+Hit:1 http://kali.download/kali kali-rolling InRelease  
+Hit:2 http://http.re4son-kernel.com/re4son kali-pi InRelease
+Reading package lists... Done
+sudo apt-get -y install git screen hostapd autossh bluez bluez-tools bridge-utils policykit-1 genisoimage iodine haveged tcpdump
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+haveged is already the newest version (1.9.14-1).
+haveged set to manually installed.
+iodine is already the newest version (0.7.0-10).
+iodine set to manually installed.
+policykit-1 is already the newest version (0.105-31+kali1).
+policykit-1 set to manually installed.
+screen is already the newest version (4.8.0-7).
+tcpdump is already the newest version (4.99.1-3).
+tcpdump set to manually installed.
+The following package was automatically installed and is no longer required:
+  libc-devtools
+Use 'sudo apt autoremove' to remove it.
+The following additional packages will be installed:
+  git-man libc-bin libc-dev-bin libc-l10n libc6 libc6-dev locales
+Suggested packages:
+  wodim cdrkit-doc gettext-base git-daemon-run | git-daemon-sysvinit
+  git-doc git-email git-gui gitk gitweb git-cvs git-mediawiki git-svn
+  glibc-doc libnss-nis libnss-nisplus
+Recommended packages:
+  libc-devtools
+The following NEW packages will be installed:
+  autossh bluez-tools bridge-utils genisoimage hostapd
+The following packages will be upgraded:
+  bluez git git-man libc-bin libc-dev-bin libc-l10n libc6 libc6-dev locales
+9 upgraded, 5 newly installed, 0 to remove and 589 not upgraded.
+Need to get 19.6 MB of archives.
+After this operation, 4,545 kB of additional disk space will be used.
+Get:1 http://kali.download/kali kali-rolling/main armhf libc-l10n all 2.33-1 [863 kB]
+Get:2 http://kali.download/kali kali-rolling/main armhf libc-dev-bin armhf 2.33-1 [241 kB]
+Get:3 http://kali.download/kali kali-rolling/main armhf libc6-dev armhf 2.33-1 [1,805 kB]
+Get:4 http://kali.download/kali kali-rolling/main armhf locales all 2.33-1 [4,087 kB]
+Get:5 http://kali.download/kali kali-rolling/main armhf libc6 armhf 2.33-1 [2,356 kB]
+Get:6 http://kali.download/kali kali-rolling/main armhf libc-bin armhf 2.33-1 [730 kB]
+Get:7 http://http.kali.org/kali kali-rolling/main armhf bluez armhf 5.62-2+kali1 [979 kB]
+Get:8 http://kali.download/kali kali-rolling/main armhf hostapd armhf 2:2.9.0-23 [713 kB]
+Get:9 http://kali.download/kali kali-rolling/main armhf autossh armhf 1.4g-1 [33.7 kB]
+Get:10 http://http.kali.org/kali kali-rolling/main armhf bluez-tools armhf 2.0~20170911.0.7cb788c-4 [126 kB]
+Get:11 http://kali.download/kali kali-rolling/main armhf bridge-utils armhf 1.7-1 [36.8 kB]
+Get:12 http://kali.download/kali kali-rolling/main armhf genisoimage armhf 9:1.1.11-3.2 [334 kB]
+Get:13 http://kali.download/kali kali-rolling/main armhf git armhf 1:2.34.1-1 [5,352 kB]
+Get:14 http://kali.download/kali kali-rolling/main armhf git-man all 1:2.34.1-1 [1,903 kB]
+Fetched 19.6 MB in 5s (4,262 kB/s)  
+Preconfiguring packages ...
+(Reading database ... 335570 files and directories currently installed.)
+Preparing to unpack .../libc-l10n_2.33-1_all.deb ...
+Unpacking libc-l10n (2.33-1) over (2.32-4) ...
+Preparing to unpack .../libc-dev-bin_2.33-1_armhf.deb ...
+Unpacking libc-dev-bin (2.33-1) over (2.32-4) ...
+Preparing to unpack .../libc6-dev_2.33-1_armhf.deb ...
+Unpacking libc6-dev:armhf (2.33-1) over (2.32-4) ...
+Preparing to unpack .../locales_2.33-1_all.deb ...
+Unpacking locales (2.33-1) over (2.32-4) ...
+Preparing to unpack .../libc6_2.33-1_armhf.deb ...
+Checking for services that may need to be restarted...
+Checking init scripts...
+Unpacking libc6:armhf (2.33-1) over (2.32-4) ...
+Setting up libc6:armhf (2.33-1) ...
+Checking for services that may need to be restarted...
+Checking init scripts...
+
+Restarting services possibly affected by the upgrade:
+  ssh: restarting...done.
+  cron: restarting...done.
+
+Services restarted successfully.
+(Reading database ... 335574 files and directories currently installed.)
+Preparing to unpack .../libc-bin_2.33-1_armhf.deb ...
+Unpacking libc-bin (2.33-1) over (2.32-4) ...
+Setting up libc-bin (2.33-1) ...
+(Reading database ... 335574 files and directories currently installed.)
+Preparing to unpack .../0-bluez_5.62-2+kali1_armhf.deb ...
+Unpacking bluez (5.62-2+kali1) over (5.61-1+kali1) ...
+Selecting previously unselected package hostapd.
+Preparing to unpack .../1-hostapd_2%3a2.9.0-23_armhf.deb ...
+Unpacking hostapd (2:2.9.0-23) ...
+Selecting previously unselected package autossh.
+Preparing to unpack .../2-autossh_1.4g-1_armhf.deb ...
+Unpacking autossh (1.4g-1) ...
+Selecting previously unselected package bluez-tools.
+Preparing to unpack .../3-bluez-tools_2.0~20170911.0.7cb788c-4_armhf.deb ...
+Unpacking bluez-tools (2.0~20170911.0.7cb788c-4) ...
+Selecting previously unselected package bridge-utils.
+Preparing to unpack .../4-bridge-utils_1.7-1_armhf.deb ...
+Unpacking bridge-utils (1.7-1) ...
+Selecting previously unselected package genisoimage.
+Preparing to unpack .../5-genisoimage_9%3a1.1.11-3.2_armhf.deb ...
+Unpacking genisoimage (9:1.1.11-3.2) ...
+Preparing to unpack .../6-git_1%3a2.34.1-1_armhf.deb ...
+Unpacking git (1:2.34.1-1) over (1:2.33.0-1) ...
+Preparing to unpack .../7-git-man_1%3a2.34.1-1_all.deb ...
+Unpacking git-man (1:2.34.1-1) over (1:2.33.0-1) ...
+Setting up genisoimage (9:1.1.11-3.2) ...
+Setting up libc-l10n (2.33-1) ...
+Setting up autossh (1.4g-1) ...
+Setting up bluez-tools (2.0~20170911.0.7cb788c-4) ...
+Setting up locales (2.33-1) ...
+Installing new version of config file /etc/locale.alias ...
+Generating locales (this might take a while)...
+  en_US.UTF-8... done
+Generation complete.
+Setting up bluez (5.62-2+kali1) ...
+Installing new version of config file /etc/bluetooth/main.conf ...
+bluetooth.service is a disabled or a static unit not running, not starting it.
+Setting up hostapd (2:2.9.0-23) ...
+update-rc.d: We have no instructions for the hostapd init script.
+update-rc.d: It looks like a network service, we disable it.
+hostapd.service is a disabled or a static unit not running, not starting it.
+Created symlink /etc/systemd/system/hostapd.service → /dev/null.
+Setting up bridge-utils (1.7-1) ...
+Setting up git-man (1:2.34.1-1) ...
+Setting up libc-dev-bin (2.33-1) ...
+Setting up git (1:2.34.1-1) ...
+Setting up libc6-dev:armhf (2.33-1) ...
+Processing triggers for man-db (2.9.4-2) ...
+Processing triggers for dbus (1.12.20-3) ...
+Processing triggers for kali-menu (2021.4.2) ...
+#sudo apt-get -y install python-pip python-dev
+# before installing dnsmasq, the nameserver from /etc/resolv.conf should be saved
+# to restore after install (gets overwritten by dnsmasq package)
+cp /etc/resolv.conf /tmp/backup_resolv.conf
+sudo apt-get -y install dnsmasq
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  libc-devtools
+Use 'sudo apt autoremove' to remove it.
+Suggested packages:
+  resolvconf
+The following NEW packages will be installed:
+  dnsmasq
+0 upgraded, 1 newly installed, 0 to remove and 589 not upgraded.
+Need to get 32.0 kB of archives.
+After this operation, 121 kB of additional disk space will be used.
+Get:1 http://kali.download/kali kali-rolling/main armhf dnsmasq all 2.86-1.1 [32.0 kB]
+Fetched 32.0 kB in 0s (80.3 kB/s)
+Selecting previously unselected package dnsmasq.
+(Reading database ... 335701 files and directories currently installed.)
+Preparing to unpack .../dnsmasq_2.86-1.1_all.deb ...
+Unpacking dnsmasq (2.86-1.1) ...
+Setting up dnsmasq (2.86-1.1) ...
+update-rc.d: We have no instructions for the dnsmasq init script.
+update-rc.d: It looks like a network service, we disable it.
+sudo /bin/bash -c 'cat /tmp/backup_resolv.conf > /etc/resolv.conf'
+sudo apt-get -y install dhcpcd5
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  libc-devtools
+Use 'sudo apt autoremove' to remove it.
+The following additional packages will be installed:
+  openresolv
+Suggested packages:
+  dhcpcd-gtk
+The following NEW packages will be installed:
+  dhcpcd5 openresolv
+0 upgraded, 2 newly installed, 0 to remove and 589 not upgraded.
+Need to get 169 kB of archives.
+After this operation, 390 kB of additional disk space will be used.
+Get:1 http://kali.download/kali kali-rolling/main armhf dhcpcd5 armhf 7.1.0-2 [143 kB]
+Get:2 http://kali.download/kali kali-rolling/main armhf openresolv all 3.12.0-2 [25.5 kB]
+Fetched 169 kB in 1s (217 kB/s)      
+Selecting previously unselected package dhcpcd5.
+(Reading database ... 335735 files and directories currently installed.)
+Preparing to unpack .../dhcpcd5_7.1.0-2_armhf.deb ...
+Unpacking dhcpcd5 (7.1.0-2) ...
+Selecting previously unselected package openresolv.
+Preparing to unpack .../openresolv_3.12.0-2_all.deb ...
+Unpacking openresolv (3.12.0-2) ...
+Setting up dhcpcd5 (7.1.0-2) ...
+update-rc.d: We have no instructions for the dhcpcd init script.
+update-rc.d: It looks like a non-network service, we enable it.
+Setting up openresolv (3.12.0-2) ...
+Processing triggers for man-db (2.9.4-2) ...
+Processing triggers for kali-menu (2021.4.2) ...
+# python dependencies for HIDbackdoor
+sudo pip install pycrypto # already present on stretch
+Collecting pycrypto
+  Downloading pycrypto-2.6.1.tar.gz (446 kB)
+     |████████████████████████████████| 446 kB 2.0 MB/s 
+Building wheels for collected packages: pycrypto
+  Building wheel for pycrypto (setup.py) ... done
+  Created wheel for pycrypto: filename=pycrypto-2.6.1-cp39-cp39-linux_armv7l.whl size=519889 sha256=0c7fac773ce96a372bc3979a0b3b7e6490cad1ac5a66b365c751a6cf87e8a134
+  Stored in directory: /root/.cache/pip/wheels/9d/29/32/8b8f22481bec8b0fbe7087927336ec167faff2ed9db849448f
+Successfully built pycrypto
+Installing collected packages: pycrypto
+Successfully installed pycrypto-2.6.1
+#sudo pip install pydispatcher #already present
+sudo apt-get -y install golang-go
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  libc-devtools
+Use 'sudo apt autoremove' to remove it.
+The following additional packages will be installed:
+  golang-1.17-go golang-1.17-src golang-src pkg-config
+Suggested packages:
+  bzr | brz mercurial
+The following NEW packages will be installed:
+  golang-1.17-go golang-1.17-src golang-go golang-src pkg-config
+0 upgraded, 5 newly installed, 0 to remove and 589 not upgraded.
+Need to get 66.5 MB of archives.
+After this operation, 397 MB of additional disk space will be used.
+Get:1 http://kali.download/kali kali-rolling/main armhf golang-1.17-src all 1.17.5-1 [15.2 MB]
+Get:2 http://kali.download/kali kali-rolling/main armhf golang-1.17-go armhf 1.17.5-1 [51.1 MB]
+Get:3 http://http.kali.org/kali kali-rolling/main armhf golang-src all 2:1.17~1 [5,396 B]
+Get:4 http://http.kali.org/kali kali-rolling/main armhf golang-go armhf 2:1.17~1 [43.0 kB]
+Get:5 http://kali.download/kali kali-rolling/main armhf pkg-config armhf 0.29.2-1 [62.4 kB]
+Fetched 66.5 MB in 14s (4,720 kB/s)                                         
+Selecting previously unselected package golang-1.17-src.
+(Reading database ... 335787 files and directories currently installed.)
+Preparing to unpack .../golang-1.17-src_1.17.5-1_all.deb ...
+Unpacking golang-1.17-src (1.17.5-1) ...
+Selecting previously unselected package golang-1.17-go.
+Preparing to unpack .../golang-1.17-go_1.17.5-1_armhf.deb ...
+Unpacking golang-1.17-go (1.17.5-1) ...
+Selecting previously unselected package golang-src.
+Preparing to unpack .../golang-src_2%3a1.17~1_all.deb ...
+Unpacking golang-src (2:1.17~1) ...
+Selecting previously unselected package golang-go:armhf.
+Preparing to unpack .../golang-go_2%3a1.17~1_armhf.deb ...
+Unpacking golang-go:armhf (2:1.17~1) ...
+Selecting previously unselected package pkg-config.
+Preparing to unpack .../pkg-config_0.29.2-1_armhf.deb ...
+Unpacking pkg-config (0.29.2-1) ...
+Setting up golang-1.17-src (1.17.5-1) ...
+Setting up pkg-config (0.29.2-1) ...
+Setting up golang-1.17-go (1.17.5-1) ...
+Setting up golang-src (2:1.17~1) ...
+Setting up golang-go:armhf (2:1.17~1) ...
+Processing triggers for kali-menu (2021.4.2) ...
+Processing triggers for man-db (2.9.4-2) ...
+# put into ~/.profile
+# ToDo: check if already present
+#echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.profile
+#sudo bash -c 'echo export PATH=\$PATH:/usr/local/go/bin >> ~/.profile'
+# install gopherjs
+go get -u github.com/gopherjs/gopherjs
+go: downloading github.com/gopherjs/gopherjs v0.0.0-20220104163920-15ed2e8cf2bd
+go: downloading github.com/neelance/sourcemap v0.0.0-20200213170602-2833bce08e4c
+go: downloading github.com/spf13/cobra v1.2.1
+go: downloading github.com/spf13/pflag v1.0.5
+go: downloading golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97
+go: downloading golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+go: downloading golang.org/x/tools v0.1.5
+go: downloading github.com/spf13/cobra v1.3.0
+go: downloading golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3
+go: downloading github.com/fsnotify/fsnotify v1.4.9
+go: downloading github.com/shurcooL/httpfs v0.0.0-20190707220628-8d4bc4ba7749
+go: downloading github.com/fsnotify/fsnotify v1.5.1
+go: downloading github.com/neelance/astrewrite v0.0.0-20160511093645-99348263ae86
+go: downloading golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c
+go: downloading golang.org/x/tools v0.1.8
+go: downloading golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e
+go: downloading github.com/inconshreveable/mousetrap v1.0.0
+go: downloading golang.org/x/term v0.0.0-20201126162022-7de9c90e9dd1
+go: downloading golang.org/x/term v0.0.0-20210927222741-03fcf44c2211
+go: downloading github.com/golang/protobuf v1.5.2
+go: downloading golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2
+go: downloading github.com/pkg/errors v0.8.1
+go: downloading golang.org/x/text v0.3.7
+go: downloading google.golang.org/genproto v0.0.0-20211208223120-3a66f561d7aa
+go: downloading google.golang.org/grpc v1.42.0
+go get: installing executables with 'go get' in module mode is deprecated.
+        To adjust and download dependencies of the current module, use 'go get -d'.
+        To install using requirements of the current module, use 'go install'.
+        To install ignoring the current module, use 'go install' with a version,
+        like 'go install example.com/cmd@latest'.
+        For more information, see https://golang.org/doc/go-get-install-deprecation
+        or run 'go help get' or 'go help install'.
+go get: upgraded github.com/golang/protobuf v1.2.0 => v1.5.2
+go get: added github.com/gopherjs/gopherjs v0.0.0-20220104163920-15ed2e8cf2bd
+go get: upgraded github.com/pkg/errors v0.8.0 => v0.8.1
+go get: upgraded github.com/spf13/cobra v0.0.3 => v1.3.0
+go get: upgraded github.com/spf13/pflag v1.0.3 => v1.0.5
+go get: added golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3
+go get: upgraded golang.org/x/net v0.0.0-20181108082009-03003ca0c849 => v0.0.0-20211112202133-69e39bad7dc2
+go get: upgraded golang.org/x/sys v0.0.0-20181107165924-66b7b1311ac8 => v0.0.0-20211216021012-1d35b9e2eb4e
+go get: added golang.org/x/term v0.0.0-20210927222741-03fcf44c2211
+go get: upgraded golang.org/x/tools v0.0.0-20180828015842-6cd1fcedba52 => v0.1.8
+go get: upgraded google.golang.org/grpc v1.16.0 => v1.42.0
+# we don't need protoc + protoc-grpc-web, because the proto file is shipped pre-compiled
+# go dependencies for webapp (without my own)
+#go get google.golang.org/grpc
+#go get -u github.com/improbable-eng/grpc-web/go/grpcweb
+#go get -u github.com/gorilla/websocket
+
+-----------------------------------------------------------------------------------------
+┌──(root💀kali-rpi-zero-2-w)-[~/P4wnP1]
+└─# make compile
+go get -u github.com/mame82/P4wnP1_aloa/... # partially downloads again, but we need the library packages in go path to build
+go: downloading github.com/robertkrimen/otto v0.0.0-20180617131154-15f95af6e78d
+go: downloading google.golang.org/grpc v1.43.0
+go: downloading github.com/robertkrimen/otto v0.0.0-20211024170158-b87d35c0b86f
+go: downloading golang.org/x/net v0.0.0-20220107192237-5cfca573fb4d
+go: downloading github.com/dgraph-io/badger v1.5.5-0.20181020042726-fbb27786246d
+go: downloading github.com/dgraph-io/badger v1.6.2
+go: downloading github.com/godbus/dbus v4.1.0+incompatible
+go: downloading github.com/mame82/mblue-toolz v0.1.1
+go: downloading periph.io/x/periph v3.3.0+incompatible
+go: downloading github.com/improbable-eng/grpc-web v0.0.0-20181111131931-77784bdb46c6
+go: downloading github.com/improbable-eng/grpc-web v0.15.0
+go: downloading periph.io/x/periph v3.6.8+incompatible
+go: downloading google.golang.org/protobuf v1.27.1
+go: downloading google.golang.org/genproto v0.0.0-20220107163113-42d7afdf6368
+go: downloading github.com/dgryski/go-farm v0.0.0-20180109070241-2de33835d102
+go: downloading github.com/dgryski/go-farm v0.0.0-20200201041132-a6ae2369ad13
+go: downloading github.com/pkg/errors v0.9.1
+go: downloading github.com/gorilla/websocket v1.4.0
+go: downloading github.com/gorilla/websocket v1.4.2
+go: downloading github.com/rs/cors v1.6.0
+go: downloading github.com/rs/cors v1.8.2
+go: downloading gopkg.in/sourcemap.v1 v1.0.5
+go: downloading github.com/AndreasBriese/bbloom v0.0.0-20180913140656-343706a395b7
+go: downloading github.com/AndreasBriese/bbloom v0.0.0-20190825152654-46b345b51c96
+go: downloading github.com/mame82/hvue v0.0.0-20181029154725-6c76eb2e8ae9
+go: downloading github.com/mame82/mvuex v0.0.0-20181014150044-3964e4abefc6
+go: downloading github.com/johanbrandhorst/protobuf v0.7.1
+go: downloading github.com/cenkalti/backoff/v4 v4.1.1
+go: downloading github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f
+go: downloading github.com/cenkalti/backoff v2.2.1+incompatible
+go: downloading nhooyr.io/websocket v1.8.6
+go: downloading github.com/cenkalti/backoff/v4 v4.1.2
+go: downloading nhooyr.io/websocket v1.8.7
+go: downloading github.com/dgraph-io/ristretto v0.0.2
+go: downloading github.com/dustin/go-humanize v1.0.0
+go: downloading github.com/klauspost/compress v1.11.7
+go: downloading github.com/dgraph-io/ristretto v0.1.0
+go: downloading github.com/cespare/xxhash v1.1.0
+go: downloading github.com/klauspost/compress v1.13.6
+go: downloading github.com/cespare/xxhash/v2 v2.1.2
+go: downloading github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
+go: downloading github.com/golang/glog v1.0.0
+go: module github.com/golang/protobuf is deprecated: Use the "google.golang.org/protobuf" module instead.
+# github.com/mame82/P4wnP1_aloa/service/datastore
+service/datastore/store.go:48:12: badgerOpts.Dir undefined (type func(string) badger.Options has no field or method Dir)
+service/datastore/store.go:49:12: badgerOpts.ValueDir undefined (type func(string) badger.Options has no field or method ValueDir)
+service/datastore/store.go:50:12: badgerOpts.SyncWrites undefined (type func(string) badger.Options has no field or method SyncWrites)
+service/datastore/store.go:51:12: badgerOpts.TableLoadingMode undefined (type func(string) badger.Options has no field or method TableLoadingMode)
+service/datastore/store.go:52:12: badgerOpts.ValueLogLoadingMode undefined (type func(string) badger.Options has no field or method ValueLogLoadingMode)
+service/datastore/store.go:58:25: cannot use badgerOpts (type func(string) badger.Options) as type badger.Options in argument to badger.Open
+service/datastore/store.go:130:13: badgerOpts.Dir undefined (type func(string) badger.Options has no field or method Dir)
+service/datastore/store.go:131:13: badgerOpts.ValueDir undefined (type func(string) badger.Options has no field or method ValueDir)
+service/datastore/store.go:132:13: badgerOpts.SyncWrites undefined (type func(string) badger.Options has no field or method SyncWrites)
+service/datastore/store.go:133:13: badgerOpts.TableLoadingMode undefined (type func(string) badger.Options has no field or method TableLoadingMode)
+service/datastore/store.go:133:13: too many errors
+# github.com/mame82/P4wnP1_aloa/web_client
+web_client/promise.go:24:12: undefined: O
+web_client/vueRouter.go:24:11: undefined: O
+web_client/vueRouter.go:29:35: undefined: O
+web_client/vueRouter.go:42:31: undefined: O
+make: *** [Makefile:55: compile] Error 2
+
+-----------------------------------------------------------------------------------------
+┌──(root💀kali-rpi-zero-2-w)-[~/P4wnP1]
+└─# sudo make installkali
+#apt-get -y install git screen hostapd autossh bluez bluez-tools bridge-utils policykit-1 genisoimage iodine haveged
+#apt-get -y install tcpdump
+#apt-get -y install python-pip python-dev
+# before installing dnsmasq, the nameserver from /etc/resolv.conf should be saved
+# to restore after install (gets overwritten by dnsmasq package)
+#cp /etc/resolv.conf /tmp/backup_resolv.conf
+#apt-get -y install dnsmasq
+#/bin/bash -c 'cat /tmp/backup_resolv.conf > /etc/resolv.conf'
+# python dependencies for HIDbackdoor
+#sudo pip install pydispatcher
+cp build/P4wnP1_service /usr/local/bin/
+cp build/P4wnP1_cli /usr/local/bin/
+cp dist/P4wnP1.service /etc/systemd/system/P4wnP1.service
+# copy over keymaps, scripts and www data
+mkdir -p /usr/local/P4wnP1
+cp -R dist/keymaps /usr/local/P4wnP1/
+cp -R dist/scripts /usr/local/P4wnP1/
+cp -R dist/HIDScripts /usr/local/P4wnP1/
+cp -R dist/www /usr/local/P4wnP1/
+cp -R dist/db /usr/local/P4wnP1/
+cp -R dist/helper /usr/local/P4wnP1/
+cp -R dist/ums /usr/local/P4wnP1/
+cp -R dist/legacy /usr/local/P4wnP1/
+#cp build/webapp.js /usr/local/P4wnP1/www
+cp ./webapp.js /usr/local/P4wnP1/www
+cp build/webapp.js.map /usr/local/P4wnP1/www
+echo "dtoverlay=dwc2" | sudo tee -a /boot/config.txt
+dtoverlay=dwc2
+# careful testing
+#sudo update-rc.d dhcpcd disable
+#sudo update-rc.d dnsmasq disable
+systemctl disable networking.service # disable network service, relevant parts are wrapped by P4wnP1 (boottime below 20 seconds)
+Synchronizing state of networking.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install disable networking
+Removed /etc/systemd/system/network-online.target.wants/networking.service.
+Removed /etc/systemd/system/multi-user.target.wants/networking.service.
+# enable service
+systemctl enable haveged
+Synchronizing state of haveged.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable haveged
+Created symlink /etc/systemd/system/sysinit.target.wants/haveged.service → /lib/systemd/system/haveged.service.
+systemctl enable avahi-daemon
+Synchronizing state of avahi-daemon.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable avahi-daemon
+Created symlink /etc/systemd/system/dbus-org.freedesktop.Avahi.service → /lib/systemd/system/avahi-daemon.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/avahi-daemon.service → /lib/systemd/system/avahi-daemon.service.
+Created symlink /etc/systemd/system/sockets.target.wants/avahi-daemon.socket → /lib/systemd/system/avahi-daemon.socket.
+systemctl enable P4wnP1.service
+Created symlink /etc/systemd/system/multi-user.target.wants/P4wnP1.service → /etc/systemd/system/P4wnP1.service.
+
+
