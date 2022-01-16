@@ -22,6 +22,7 @@ Problems reported:
    - Hints by @mame82:
      - [SubSysGpio](https://github.com/RoganDawes/P4wnP1_aloa/blob/95de406b72cd1c66f987184a2f7455fcae337252/service/SubSysGpio.go#L62L70)
      - [p4wnp1_aloa_build_notes.md](https://github.com/RoganDawes/P4wnP1_aloa/blob/master/build_support/p4wnp1_aloa_build_notes.md)
+4. `P4wnP1_cli led -b 0` is not working. No folder at `/sys/class/leds/led0` too.
 3. All features related to the nexmon firmware
    - Open Issue reported on the nexmon [github](https://github.com/seemoo-lab/nexmon/issues/500)
 
