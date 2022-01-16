@@ -17,12 +17,12 @@ The log of 'make dep / make compile / make installkali' is saved [here](https://
 
 Problems reported:
 ---------
-1. There's a problem with bluetooth. report by myself
+1. There's a problem with bluetooth. report by me.
 2. Problem with GPIO. report by [@beboxos](https://github.com/beboxos) on [twitter]( https://twitter.com/BeBoXoS/status/1482115934206758915 )
    - Hints by @mame82:
      - [SubSysGpio](https://github.com/RoganDawes/P4wnP1_aloa/blob/95de406b72cd1c66f987184a2f7455fcae337252/service/SubSysGpio.go#L62L70)
      - [p4wnp1_aloa_build_notes.md](https://github.com/RoganDawes/P4wnP1_aloa/blob/master/build_support/p4wnp1_aloa_build_notes.md)
-4. `P4wnP1_cli led -b 0` is not working. No folder at `/sys/class/leds/led0` too.
+4. `P4wnP1_cli led -b 0` is not working. No folder at `/sys/class/leds/led0` too. Report by me.
 3. All features related to the nexmon firmware
    - Open Issue reported on the nexmon [github](https://github.com/seemoo-lab/nexmon/issues/500)
 
