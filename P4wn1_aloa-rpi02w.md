@@ -57,7 +57,7 @@ date --set **:**:**
 git clone https://github.com/lgeekj/P4wnP1  
 cd P4wnP1  
 ```
-- Install dependencies, compile and install P4wnP1:
+- Install dependencies, compile and install P4wnP1 (make compile probably will give error but just continue):
 ```
 make dep  
 make compile  
