@@ -8,7 +8,7 @@ You can download an img create with these steps [here](https://mega.nz/file/GeBD
 
 The img is ~12gb and is compressed to <4gb for download purpose.
 
-Thanks to [@lgeekj](https://github.com/lgeekj) to the modification of the P4wnP1 ( [@RoganDawes](https://github.com/rogandawes) [@mame82](https://github.com/mame82) ) files.
+Thanks to [@lgeekj](https://github.com/lgeekjopt) to the modification of the P4wnP1 ( [@RoganDawes](https://github.com/rogandawes) [@mame82](https://github.com/mame82) ) files.
 All infos come from a P4wnP1_aloa issus [here](https://github.com/RoganDawes/P4wnP1_aloa/issues/307)
 
 The log of 'make dep / make compile / make installkali' is saved [here](https://github.com/V0r-T3x/My_Notes_on_P4wnP1/blob/main/logs/P4wnP1-rpiZ2.log)
@@ -55,7 +55,7 @@ date --set **:**:**
 - Connect to ssh  
 - Clone P4wnP1 github and go inside the folder:
 ```
-git clone https://github.com/lgeekj/P4wnP1  
+git clone https://github.com/lgeekjopt/P4wnP1_aloa
 cd P4wnP1  
 ```
 - Install dependencies, compile and install P4wnP1 (make compile probably will give error but just continue):
