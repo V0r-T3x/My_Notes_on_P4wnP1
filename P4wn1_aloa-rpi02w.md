@@ -36,6 +36,12 @@ additionnal problem notes by @mame82:
 >Firmware patches for the RPi0w Broadcom chipset reside here (if you take a look into commit days, you will understand why I am not much of a help today)
 >https://github.com/RoganDawes/nexmon_wifi_covert_channel/tree/p4wnp1/patches/bcm43430a1/7_45_41_46/nexmon/src
 
+- The `/etc/modules` and the `/etc/modprobe.d/fbtft.conf` cause error with `sudo modprobe i2c-dev`. Just remove thse two files, they are not nescessary on the img.
+```
+rm /etc/modules
+rm /etc/modprobe.d/fbtft.conf
+```
+
 ----------------------------------------------------------------------------------------------------------
 
 Step list for this img:
@@ -71,12 +77,12 @@ make installkali
 ```
 nano /etc/modules
 ```
-   - Add this to the /etc/modules
+- Add this to the /etc/modules
 ```
 spi-bcm2835  
 fbtft_device  
 ```
-- Creating a new file for fbtft configuration  
+- Creating a new file for fbtft configuration
 ```
 nano /etc/modprobe.d/fbtft.conf
 ```
