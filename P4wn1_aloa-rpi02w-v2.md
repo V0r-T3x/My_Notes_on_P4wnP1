@@ -38,7 +38,7 @@ Additionnal notes
 - GPIO depends on the periph.io golang librairy. _[I opened an issue on the periph.io git page](https://github.com/periph/conn/issues/21)_.
 Possible fix:
 ---------
--Changing the old source path of periph.io into these two files:
+-Changing the old source path of periph.io into these two files:  
 -1.
 ```
 GitHub\P4wnP1_aloa\service\SubSysGpio.go
@@ -61,7 +61,7 @@ GitHub\P4wnP1_aloa\service\SubSysGpio.go
 "periph.io/x/host/v3"
 "periph.io/x/host/v3/rpi"
 ```
-- 2.
+-2.
 ```
 GitHub\P4wnP1_aloa\service\pgpio\p4wnp1gpio.go
 ```
@@ -116,34 +116,35 @@ date --set ****-**-**
 date --set **:**:**  
 ```
 - Use `kalipi-config` to expand the filesystem  
-> 07 Advanced Options > A1 Expand Filesystem
+> 07 Advanced Options > A1 Expand Filesystem  
 - Use `kalipi-config` to enable auto login in terminal mode on boot  
-> 03 Boot Options > B1 Desktop / CLI > B2 Console Autologin > (Leave empty) > OK >
+> 03 Boot Options > B1 Desktop / CLI > B2 Console Autologin > (Leave empty) > OK >  
 - Use `kalipi-config` to connect to Wi-Fi  
 > 02 Network Options > N2 Wi-fi > ...   
-- Use `kalipi-config` to enable SPI & I2C
+- Use `kalipi-config` to enable SPI & I2C  
 > 05 Interfacing Options > P3 SPI > Would you like the SPI interface to be enabled? > Yes  
 > 05 Interfacing Options > P4 I2C > Would you like the I2C interface to be enabled? > Yes  
-- Reboot
+- Reboot  
 - Connect to ssh  
-- Updating and upgrading
+- Updating and upgrading  
 ```
 apt update
 apt upgrade
 ``` 
-- Clone P4wnP1 github and go inside the folder:
+- Clone P4wnP1 github and go inside the folder:  
 ```
 git clone https://github.com/lgeekjopt/P4wnP1_aloa
 cp -r P4wnP1_aloa P4wnP1
 rm -r P4wnP1_aloa
 cd P4wnP1  
 ```
-- Install dependencies, compile and install P4wnP1 (make compile probably will give error but just continue) 
-    -(_In my last attempt I just do `make dep` and `make installkali` and this seems working with the old bins_):
+- Replace `GitHub\P4wnP1_aloa\service\SubSysGpio.go` & `GitHub\P4wnP1_aloa\service\pgpio\p4wnp1gpio.go`  
+- Install dependencies, compile and install P4wnP1 (make compile probably will give error but just continue):  
+- All the log is [here](https://github.com/V0r-T3x/My_Notes_on_P4wnP1/blob/main/logs/P4wnP1-rpiZ2-2022-05-27.log)  
 ```
-sudo make dep  
+make dep  
 make compile  
-sudo make installkali  
+make installkali  
 ```
 - Install librairies for the BCM2835  
 ```
