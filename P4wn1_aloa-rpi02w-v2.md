@@ -36,6 +36,45 @@ additionnal problem notes by @mame82:
 Additionnal notes  
 ----------
 - GPIO depends on the periph.io golang librairy. _[I opened an issue on the periph.io git page](https://github.com/periph/conn/issues/21)_.
+Possible fix:
+---------
+-Changing the old source path of periph.io into these two files:
+-1.
+```
+GitHub\P4wnP1_aloa\service\SubSysGpio.go
+```
+-from this:
+```
+"periph.io/x/periph"
+"periph.io/x/periph/conn/gpio"
+"periph.io/x/periph/conn/gpio/gpioreg"
+"periph.io/x/periph/conn/pin/pinreg"
+"periph.io/x/periph/host"
+"periph.io/x/periph/host/rpi"
+```
+-to this:
+```
+"periph.io/x/conn/v3"
+"periph.io/x/conn/v3/gpio"
+"periph.io/x/conn/v3/gpio/gpioreg"
+"periph.io/x/conn/v3/pin/pinreg"
+"periph.io/x/host/v3"
+"periph.io/x/host/v3/rpi"
+```
+- 2.
+```
+GitHub\P4wnP1_aloa\service\pgpio\p4wnp1gpio.go
+```
+- from this:
+```
+"periph.io/x/periph/conn/gpio"
+"periph.io/x/periph/conn/physic"
+```
+- to this:
+```
+"periph.io/x/conn/v3/gpio"
+"periph.io/x/conn/v3/physic"
+```
 
 - Original Package version on the P4wnP1 aloa rpi0w
 - P4wnP1 v0.1.1 "2020-02-06" https://github.com/RoganDawes/P4wnP1_aloa/tags
@@ -57,23 +96,35 @@ sudo su
 ```
 passwd
 ```
+-Delete user kali
+```
+userdel -r kali
+```
 - Enable root login over SSH:  
 ```
 nano /etc/ssh/sshd_config
 ```
-- Change `PermitRootLogin no` to `PermitRootLogin yes`.
-- Restart the SSH server:
+- Change `PermitRootLogin no` to `PermitRootLogin yes`.  
+- Restart the SSH server:   
 ```
 service sshd restart
 ```
-- Change date, time and timezone:
+- Change date, time and timezone:  
 ```
 dpkg-reconfigure tzdata  
 date --set ****-**-**  
 date --set **:**:**  
 ```
+- Use `kalipi-config` to expand the filesystem  
+> 07 Advanced Options > A1 Expand Filesystem
+- Use `kalipi-config` to enable auto login in terminal mode on boot  
+> 03 Boot Options > B1 Desktop / CLI > B2 Console Autologin > (Leave empty) > OK >
 - Use `kalipi-config` to connect to Wi-Fi  
-> 02 Network options > N2 Wi-fi > ...  
+> 02 Network Options > N2 Wi-fi > ...   
+- Use `kalipi-config` to enable SPI & I2C
+> 05 Interfacing Options > P3 SPI > Would you like the SPI interface to be enabled? > Yes  
+> 05 Interfacing Options > P4 I2C > Would you like the I2C interface to be enabled? > Yes  
+- Reboot
 - Connect to ssh  
 - Updating and upgrading
 ```
@@ -94,9 +145,6 @@ sudo make dep
 make compile  
 sudo make installkali  
 ```
-- Use `kalipi-config` to enable SPI  
->05 Interfacing Options > P3 SPI > Would you like the SPI interface to be enabled? > Yes  
-
 - Install librairies for the BCM2835  
 ```
 cd ..
