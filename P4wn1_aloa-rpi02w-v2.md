@@ -34,11 +34,13 @@ additionnal problem notes by @mame82:
 
 ----------------------------------------------------------------------------------------------------------
 Additionnal notes  
-GPIO depends on the periph.io golang librairy.
-Original Package version on the P4wnP1 aloa rpi0w
-P4wnP1 v0.1.1 "2020-02-06" https://github.com/RoganDawes/P4wnP1_aloa/tags
-Golang v1.10-v1.13  "2019-09-03" https://en.wikipedia.org/wiki/Go_(programming_language)
-periph.io v3.6.2 "" https://periph.io/news/
+----------
+- GPIO depends on the periph.io golang librairy. _[I opened an issue on the periph.io git page](https://github.com/periph/conn/issues/21)_.
+
+- Original Package version on the P4wnP1 aloa rpi0w
+- P4wnP1 v0.1.1 "2020-02-06" https://github.com/RoganDawes/P4wnP1_aloa/tags
+- Golang v1.10-v1.13  "2019-09-03" https://en.wikipedia.org/wiki/Go_(programming_language)
+- periph.io v3.6.2 "" https://periph.io/news/
 ----------------------------------------------------------------------------------------------------------
 
 Step list for this img:
