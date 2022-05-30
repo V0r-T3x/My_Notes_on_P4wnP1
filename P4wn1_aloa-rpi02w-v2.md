@@ -14,13 +14,15 @@ Corrected problems:
 2. All features related to the nexmon firmware. [Nexmon support now the rpi02w](https://github.com/seemoo-lab/nexmon/)
    - Open Issue reported on the nexmon [github](https://github.com/seemoo-lab/nexmon/issues/500)
 
+Anomalies:
+1. `P4wnP1_cli led -b 0` is working but instead `0=OFF` and `>254=ON`, it is the opposite, `0=ON` and `>254=OFF`. Report by me.  
+
 Problems reported:
 ---------
 1. Problem with GPIO. report by [@beboxos](https://github.com/beboxos) on [twitter]( https://twitter.com/BeBoXoS/status/1482115934206758915 )
    - Hints by @mame82:
      - [SubSysGpio](https://github.com/RoganDawes/P4wnP1_aloa/blob/95de406b72cd1c66f987184a2f7455fcae337252/service/SubSysGpio.go#L62L70)
      - [p4wnp1_aloa_build_notes.md](https://github.com/RoganDawes/P4wnP1_aloa/blob/master/build_support/p4wnp1_aloa_build_notes.md)
-2. `P4wnP1_cli led -b 0` is not working. No folder at `/sys/class/leds/led0` too. Report by me.
 
 additionnal problem notes by @mame82:
 
