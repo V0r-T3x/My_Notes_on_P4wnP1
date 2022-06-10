@@ -154,27 +154,27 @@ cd ..
 wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.68.tar.gz  
 tar zxvf bcm2835-1.68.tar.gz  
 cd bcm2835-1.68/  
-./configure && sudo make && sudo make check && sudo make install  
+./configure && make && make check && make install  
 ```
 - Install font
 ```
-sudo apt-get install ttf-wqy-zenhei  
+apt-get install ttf-wqy-zenhei  
 ```
 - Install pip3
 ```
-sudo apt-get install python3-pip  
+apt-get install python3-pip  
 ```
 - Install RPi.GPIO
 ``` 
-sudo pip3 install RPi.GPIO  
+pip3 install RPi.GPIO  
 ```
 - Install cmake
 ```
-sudo apt-get install cmake -y  
+apt-get install cmake -y  
 ```
 - Install 7zip
 ```
-sudo apt-get install p7zip-full  
+apt-get install p7zip-full  
 ```
 - Move to the root folder
 ```
