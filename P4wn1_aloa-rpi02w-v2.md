@@ -234,7 +234,13 @@ hdmi_cvt=300 300 60 1 0 0 0
 hdmi_group=2  
 hdmi_mode=87  
 display_rotate=0  
+dtoverlay=miniuart-bt
+
+core_freq=250
 ```
+- __BT fix found by @MatthieuOByrne https://github.com/RoganDawes/P4wnP1_aloa/issues/307#issuecomment-1951339462  
+- the dtoverlay and core_freq are use to enable the hciuart.service  
+
 - And reboot the system
 ```
 reboot now
